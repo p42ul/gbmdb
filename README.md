@@ -8,3 +8,11 @@ It is a work in progress, if you have any comments or suggestions please let me 
 Here is an example of some expressive characteristics that have been extracted from the Pokemon theme song:
 
 ![Expressive characteristics of the Pokemon theme song](doc/example.png)
+
+## To-do list:
+
+- Create MIDI data from expressive characteristics
+  - This will require investigating how to calculate "note-on" and "note-off" messages
+- Sort through which expressive characteristics are most useful in a musical context
+- Optimize file size of captured data
+- Add checksums for verified data dumps
