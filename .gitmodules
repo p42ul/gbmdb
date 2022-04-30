@@ -1,0 +1,3 @@
+[submodule "vgmplay"]
+	path = vgmplay
+	url = git@github.com:p42ul/vgmplay.git
