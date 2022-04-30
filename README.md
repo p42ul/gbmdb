@@ -7,4 +7,4 @@ It is a work in progress, if you have any comments or suggestions please let me 
 
 Here is an example of some expressive characteristics that have been extracted from the Pokemon theme song:
 
-![doc/example.png](Expressive characteristics of the Pokemon theme song)
+![Expressive characteristics of the Pokemon theme song](doc/example.png)
