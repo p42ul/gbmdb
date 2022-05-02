@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import os
 import subprocess
 import zipfile
@@ -6,6 +7,8 @@ import zipfile
 from collections import defaultdict
 
 def read_vgm_dump(dump_data):
+    if type(dump_data) is bytes:
+        dump_data = dump_data.decode('utf-8')
     mode = None
     position = 0
     data = defaultdict(dict)
@@ -50,6 +53,7 @@ def csv2dump(input_filename):
     return data
 
 def process_vgm_zip(input_filename, vgm2wav_path):
+    print(f'processing {input_filename}')
     directory_name = input_filename.replace('.zip', '')
     with zipfile.ZipFile(input_filename) as z:
         z.extractall(directory_name)
@@ -60,6 +64,19 @@ def process_vgm_zip(input_filename, vgm2wav_path):
         vgz_path = os.path.join(directory_name, filename)
         csv_path = os.path.join(directory_name, base_filename+'.csv')
         raw_dump_data = subprocess.check_output([vgm2wav_path, vgz_path, '/dev/null'])
-        decoded_dump_data = raw_dump_data.decode('utf-8')
-        dump_data = read_vgm_dump(decoded_dump_data)
+        dump_data = read_vgm_dump(raw_dump_data)
         dump2csv(dump_data, csv_path)
+
+def checksum_csvs(csv_directory):
+    checksums = defaultdict(dict)
+    for (dirpath, dirnames, filenames) in os.walk(csv_directory):
+        for filename in filenames:
+            if not filename.endswith('.csv'):
+                continue
+            with open(os.path.join(dirpath, filename), 'rb') as f:
+                csv_data = f.read()
+                sha1 = hashlib.sha1()
+                sha1.update(csv_data)
+                game_title = dirpath.split('/')[-1]
+                checksums[game_title][filename] = sha1.hexdigest()
+    return checksums
