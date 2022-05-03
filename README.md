@@ -1,4 +1,4 @@
-# GBMDB
+# GB-MDB
 ## The Game Boy Music Database
 
 This is a project based on the [NES Music Database](https://github.com/chrisdonahue/nesmdb) which attempts to follow a similar methodology for Game Boy games.
