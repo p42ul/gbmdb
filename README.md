@@ -22,4 +22,3 @@ Here is an example of some expressive characteristics that have been extracted f
   - This will require investigating how to calculate "note-on" and "note-off" messages
 - Sort through which expressive characteristics are most useful in a musical context
 - Optimize file size of captured data
-- Add checksums for verified data dumps
